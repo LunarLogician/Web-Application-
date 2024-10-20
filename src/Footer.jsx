@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaLock, FaHeart } from "react-icons/fa";
 import { SiGoogle } from "react-icons/si";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const Footer = () => {
+  useEffect(() => {
+    // Register the ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animate the footer sections as they come into view
+    gsap.to(".footer-section", {
+      opacity: 1,
+      y:-10,
+      x:-9,
+      stagger: 0.2, // Stagger the animation of each section
+      duration: 1,
+      rotation: 360,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".footer-section",
+        start: "top 80%", // Start the animation when the top of the element reaches 80% of the viewport height
+        toggleActions: "play none none reverse", // Play the animation when in view, and reverse when out of view
+      },
+    });
+  }, []);
+
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-gray-800 py-12 text-gray-300 pmt-10">
-      <div className="max-w-6xl mx-auto ">
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-800 py-12 text-gray-300 mt-10">
+      <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About Section */}
-          <div className="flex flex-col items-start">
+          <div className="footer-section flex flex-col items-start">
             <h2 className="text-2xl font-bold text-white mb-4">About Us</h2>
             <p className="text-base">
               We are dedicated to helping our users succeed in the world of cryptocurrency mining. Join our community and start your journey today!
@@ -16,7 +39,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links Section */}
-          <div className="flex justify-center">
+          <div className="footer-section flex justify-center">
             <div>
               <h2 className="text-2xl font-bold text-white mb-4">Quick Links</h2>
               <ul className="list-none space-y-2 text-center">
@@ -29,7 +52,7 @@ const Footer = () => {
           </div>
 
           {/* Follow Us Section */}
-          <div className="flex flex-col items-end">
+          <div className="footer-section flex flex-col items-end">
             <h2 className="text-2xl font-bold text-white mb-4">Follow Us</h2>
             <div className="flex space-x-4 mb-4">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
@@ -49,7 +72,7 @@ const Footer = () => {
         </div>
 
         {/* Trust and Payment Section */}
-        <div className="flex justify-between items-center border-t border-gray-700 mt-6 pt-4 text-sm">
+        <div className="footer-section flex justify-between items-center border-t border-gray-700 mt-6 pt-4 text-sm">
           <div className="flex items-center space-x-2">
             <SiGoogle className="w-6 h-6 text-blue-500" />
             <span>Trusted by Google</span>

@@ -1,15 +1,28 @@
-import React from "react";
-import Card from "./Card"; // Ensure you have a Card component
+import React, { useEffect } from "react";
+import gsap from "gsap";
 import Card2 from "./Card2"; // Ensure you have a Card2 component
 
 const About = () => {
+  useEffect(() => {
+    // Animate the heading and paragraph text with staggered effect
+    gsap.to('.about-text', {
+      opacity: 1,
+      y: -20,
+      stagger: 0.3, // Stagger the animations for each element
+      ease: "power3.out", // Smooth easing curve
+      duration: 1.5,
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#1e2836] to-gray-900 flex flex-col items-center justify-center py-20 px-5">
       <div className="relative min-w-full max-w-5xl mb-10">
         <div className="absolute inset-0 rounded-lg border-4 border-blue-500 glow-effect"></div>
         <div className="relative z-10 bg-gray-800 p-8 rounded-lg shadow-lg">
-          <h2 className="text-4xl font-bold text-white mb-6">About Our Mining Platform</h2>
-          <p className="text-lg text-gray-300 mb-8 text-justify ">
+          <h2 className="text-4xl font-bold text-white mb-6 about-text opacity-0"> {/* Set initial opacity to 0 */}
+            About Our Mining Platform
+          </h2>
+          <p className="text-lg text-gray-300 mb-8 text-justify about-text opacity-0"> {/* Set initial opacity to 0 */}
             Welcome to our mining platform, where you can start earning money by watching videos and engaging with our community.
             Our website is designed for both beginners and experienced miners, offering a user-friendly experience and valuable resources to help you succeed in the world of cryptocurrency mining.
           </p>

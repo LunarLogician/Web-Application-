@@ -3,6 +3,7 @@ import Hero from "./Hero"; // Import the Hero component
 import Card from "./Card"; // Import the Card component
 import About from "./About"; // Import the About component
 import Footer from "./Footer"; // Import the Footer component
+import Highlights from "./Highlights";
 
 const Body = () => {
   return (
